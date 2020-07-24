@@ -7,6 +7,7 @@ import './index.css';
 export default class Input extends Component {
 	static defaultProps = {
 		apiKey: 'irtFAaS7MxuaQq70RX4v0TEpoPdOYDfA',
+		timeApiKey: 'GXML41NJ38XX',
 	};
 	constructor(props) {
 		super(props);
@@ -67,13 +68,13 @@ export default class Input extends Component {
 				cloudCover: cityData.CloudCover,
 				icon: cityData.WeatherIcon,
 				text: cityData.WeatherText,
-				epochTime: cityData.EpochTime,
 			});
+			let time = await axios.get(
+				`http://api.timezonedb.com/v2.1/get-time-zone?key=${this.props.timeApiKey}&format=json&by=position&lat=${this.state.lat}&lng=${this.state.long}`
+			);
+			this.setState({ epochTime: time.data.formatted });
 			const newCity = { ...this.state, id: uuidv4() };
 			this.props.create(newCity);
-			console.log(this.state);
-			console.log(res.data);
-			console.log(cityData);
 		} catch (err) {
 			console.log(err);
 			alert("Sorry, we couldn't find what you searched for! Try again!");

@@ -105,7 +105,8 @@
 }
 @media only screen and (min-width: 768px) {
 	.city {
-		width: 65%;
+		width: 70%;
+		padding: 5vw;
 	}
 	.temperature {
 		font-size: 1.8em;

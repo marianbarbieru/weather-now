@@ -16,7 +16,7 @@ export default class City extends Component {
 		this.props.icon < 10
 			? (imgSc = `https://developer.accuweather.com/sites/default/files/0${this.props.icon}-s.png`)
 			: (imgSc = `https://developer.accuweather.com/sites/default/files/${this.props.icon}-s.png`);
-		let localTime = new Date(this.props.date * 1000).toLocaleString();
+
 		return (
 			<div className='city'>
 				<h2 className='city-title'>{this.props.city}</h2>
@@ -43,7 +43,7 @@ export default class City extends Component {
 							Lat: {this.props.lat}&#176; Long: {this.props.long}&#176;{' '}
 							<i className='fas fa-map-marker-alt'></i>
 						</div>
-						<div className='city-time'>Last updated: {localTime}</div>
+						<div className='city-time'>Local time: {this.props.date}</div>
 					</div>
 					<div></div>
 				</div>
