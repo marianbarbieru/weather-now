@@ -40,7 +40,7 @@ export default class Input extends Component {
 	async getData() {
 		try {
 			let res = await axios.get(
-				`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${this.props.apiKey}&q=${this.state.city}`
+				`https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${this.props.apiKey}&q=${this.state.city}`
 			);
 			let resData = res.data[0];
 			this.setState({
@@ -52,7 +52,7 @@ export default class Input extends Component {
 				region: resData.Region.EnglishName,
 			});
 			let cityWh = await axios.get(
-				`http://dataservice.accuweather.com/currentconditions/v1/${this.state.cityId}?apikey=${this.props.apiKey}&details=true`
+				`https://dataservice.accuweather.com/currentconditions/v1/${this.state.cityId}?apikey=${this.props.apiKey}&details=true`
 			);
 			let cityData = cityWh.data[0];
 			this.setState({
@@ -70,7 +70,7 @@ export default class Input extends Component {
 				text: cityData.WeatherText,
 			});
 			let time = await axios.get(
-				`http://api.timezonedb.com/v2.1/get-time-zone?key=${this.props.timeApiKey}&format=json&by=position&lat=${this.state.lat}&lng=${this.state.long}`
+				`https://api.timezonedb.com/v2.1/get-time-zone?key=${this.props.timeApiKey}&format=json&by=position&lat=${this.state.lat}&lng=${this.state.long}`
 			);
 			this.setState({ epochTime: time.data.formatted });
 			const newCity = { ...this.state, id: uuidv4() };
